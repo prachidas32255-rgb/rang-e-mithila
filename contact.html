@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Contact | Rang-e-Mithila</title>
+
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='css/style.css') }}">
+
+    <style>
+        .contact-page {
+            padding: 60px 8%;
+        }
+
+        .contact-heading {
+            text-align: center;
+            margin-bottom: 45px;
+        }
+
+        .contact-heading h1 {
+            font-size: 45px;
+            margin-bottom: 12px;
+        }
+
+        .contact-heading p {
+            font-size: 18px;
+        }
+
+        .contact-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+            max-width: 1100px;
+            margin: auto;
+        }
+
+        .contact-box,
+        .message-box {
+            background: rgba(255,255,255,0.75);
+            padding: 35px;
+            border-radius: 18px;
+            box-shadow: 0 5px 25px rgba(0,0,0,0.08);
+        }
+
+        .contact-box h2,
+        .message-box h2 {
+            margin-bottom: 20px;
+        }
+
+        .contact-box p {
+            line-height: 1.7;
+        }
+
+        .contact-info {
+            margin-top: 25px;
+        }
+
+        .contact-info strong {
+            display: block;
+            margin-top: 18px;
+        }
+
+        .contact-info span {
+            display: block;
+            margin-top: 5px;
+        }
+
+        .message-box form {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        .message-box input,
+        .message-box textarea {
+            width: 100%;
+            padding: 14px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            font-family: inherit;
+            font-size: 15px;
+            box-sizing: border-box;
+        }
+
+        .message-box textarea {
+            min-height: 150px;
+            resize: vertical;
+        }
+
+        .message-box button {
+            padding: 14px 25px;
+            border: none;
+            border-radius: 8px;
+            background: #b73545;
+            color: white;
+            font-size: 16px;
+            cursor: pointer;
+            font-family: inherit;
+        }
+
+        .message-box button:hover {
+            opacity: 0.9;
+        }
+
+        .success-message {
+            background: #e8f7e8;
+            padding: 15px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+        @media (max-width: 768px) {
+            .contact-container {
+                grid-template-columns: 1fr;
+            }
+
+            .contact-heading h1 {
+                font-size: 35px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <header>
+        <nav>
+            <h2>Rang-e-Mithila</h2>
+
+            <div>
+                <a href="{{ url_for('home') }}">Home</a>
+                <a href="{{ url_for('gallery') }}">Gallery</a>
+                <a href="{{ url_for('contact') }}">Contact</a>
+            </div>
+        </nav>
+    </header>
+
+
+    <section class="contact-page">
+
+        <div class="contact-heading">
+            <h1>Get in Touch</h1>
+
+            <p>
+                Have a question about our Mithila paintings?
+                We'd love to hear from you.
+            </p>
+        </div>
+
+
+        <div class="contact-container">
+
+            <!-- CONTACT INFORMATION -->
+
+            <div class="contact-box">
+
+                <h2>Contact Prachi</h2>
+
+                <p>
+                    For painting enquiries, custom artwork, orders or any
+                    other questions, feel free to reach out.
+                </p>
+
+                <div class="contact-info">
+
+                    <strong>Artist</strong>
+                    <span>Prachi</span>
+
+                    <strong>Phone</strong>
+                    <span>+91 7764919302</span>
+
+                    <strong>Email</strong>
+                    <span>prachidas32255@gmail.com</span>
+
+                    <strong>Location</strong>
+                    <span>Madhubani, Bihar</span>
+
+                </div>
+
+            </div>
+
+
+            <!-- MESSAGE FORM -->
+
+            <div class="message-box">
+
+                <h2>Send a Message</h2>
+
+                {% if success %}
+
+                    <div class="success-message">
+                        Thank you, {{ name }}!
+                        Your message has been received successfully.
+                    </div>
+
+                {% endif %}
+
+
+                <form action="{{ url_for('contact') }}" method="POST">
+
+                    <input
+                        type="text"
+                        name="name"
+                        placeholder="Your Name"
+                        required
+                    >
+
+                    <input
+                        type="email"
+                        name="email"
+                        placeholder="Your Email"
+                        required
+                    >
+
+                    <input
+                        type="text"
+                        name="subject"
+                        placeholder="Subject"
+                        required
+                    >
+
+                    <textarea
+                        name="message"
+                        placeholder="Your Message"
+                        required
+                    ></textarea>
+
+                    <button type="submit">
+                        Send Message
+                    </button>
+
+                </form>
+
+            </div>
+
+        </div>
+
+    </section>
+
+</body>
+</html>

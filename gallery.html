@@ -1,0 +1,464 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Gallery | Rang-e-Mithila</title>
+
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='css/style.css') }}">
+
+    <style>
+
+        /* =========================
+           GALLERY INTRO
+           ========================= */
+
+        .gallery-intro {
+            text-align: center;
+            font-size: 18px;
+            line-height: 1.7;
+            margin: -10px auto 40px;
+            max-width: 750px;
+        }
+
+
+        /* =========================
+           GALLERY GRID
+           ========================= */
+
+        .gallery {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 35px;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+
+        /* =========================
+           PAINTING CARD
+           ========================= */
+
+        .painting {
+            background: #fffaf5;
+            border-radius: 15px;
+            padding: 18px;
+            text-align: center;
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.10);
+            transition: 0.3s;
+        }
+
+        .painting:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+        }
+
+
+        /* =========================
+           PAINTING IMAGE
+           ========================= */
+
+        .painting img {
+            width: 100%;
+            height: 300px;
+            object-fit: contain;
+            background: #f7eee5;
+            border-radius: 10px;
+            cursor: pointer;
+            display: block;
+        }
+
+
+        .painting h3 {
+            font-size: 20px;
+            margin: 18px 5px 8px;
+            color: #7f1d2d;
+        }
+
+
+        /* =========================
+           PRICE
+           ========================= */
+
+        .price {
+            font-size: 20px;
+            font-weight: bold;
+            margin: 10px 0 15px;
+            color: #4a3430;
+        }
+
+
+        /* =========================
+           BUY BUTTON
+           ========================= */
+
+        .buy-btn {
+            padding: 11px 26px;
+            border: none;
+            border-radius: 7px;
+            cursor: pointer;
+            font-size: 16px;
+            font-weight: bold;
+            background: #8f1d2c;
+            color: white;
+            transition: 0.3s;
+        }
+
+        .buy-btn:hover {
+            background: #d99a2b;
+            transform: scale(1.05);
+        }
+
+
+        /* =========================
+           IMAGE MODAL
+           ========================= */
+
+        .image-modal {
+            display: none;
+            position: fixed;
+            z-index: 9999;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.88);
+            justify-content: center;
+            align-items: center;
+        }
+
+        .image-modal img {
+            max-width: 88%;
+            max-height: 82%;
+            object-fit: contain;
+            border-radius: 10px;
+        }
+
+        .close-modal {
+            position: absolute;
+            top: 18px;
+            right: 30px;
+            color: white;
+            font-size: 45px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+
+        /* =========================
+           MOBILE
+           ========================= */
+
+        @media (max-width: 900px) {
+
+            .gallery {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 25px;
+            }
+
+        }
+
+
+        @media (max-width: 600px) {
+
+            .gallery {
+                grid-template-columns: 1fr;
+                padding: 15px;
+            }
+
+            .painting img {
+                height: 350px;
+            }
+
+            .gallery-intro {
+                padding: 0 20px;
+                font-size: 16px;
+            }
+
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+
+    <!-- =========================
+         NAVBAR
+         ========================= -->
+
+    <nav class="navbar">
+
+        <div class="logo">
+            Rang-e-Mithila
+        </div>
+
+        <div class="nav-links">
+
+            <a href="/">
+                Home
+            </a>
+
+            <a href="/gallery">
+                Gallery
+            </a>
+
+            <a href="/about">
+                About the Artist
+            </a>
+
+            <a href="/contact">
+                Contact
+            </a>
+
+        </div>
+
+    </nav>
+
+
+
+    <!-- =========================
+         GALLERY
+         ========================= -->
+
+    <section class="gallery-section">
+
+        <h1>
+            Our Mithila Art Gallery
+        </h1>
+
+        <p class="gallery-intro">
+            Explore our beautiful collection of traditional handmade
+            Mithila paintings, created with love and colours.
+        </p>
+
+
+        <div class="gallery">
+
+
+            <!-- RADHA KRISHNA -->
+
+            <div class="painting">
+
+                <img
+                    src="{{ url_for('static', filename='images/radha-krishna-jhulan.jpeg') }}"
+                    alt="Radha - Krishna Jhulan"
+                    onclick="openModal(this.src)"
+                >
+
+                <h3>
+                    Radha - Krishna Jhulan
+                </h3>
+
+                <p class="price">
+                    ₹999
+                </p>
+
+                <button
+                    class="buy-btn"
+                    onclick="buyPainting('Radha - Krishna Jhulan', '999')">
+
+                    Buy Now
+
+                </button>
+
+            </div>
+
+
+
+            <!-- RAM SITA VIVAH -->
+
+            <div class="painting">
+
+                <img
+                    src="{{ url_for('static', filename='images/ram-sita-vivah.jpeg') }}"
+                    alt="Ram Sita Vivah"
+                    onclick="openModal(this.src)"
+                >
+
+                <h3>
+                    Ram Sita Vivah
+                </h3>
+
+                <p class="price">
+                    ₹999
+                </p>
+
+                <button
+                    class="buy-btn"
+                    onclick="buyPainting('Ram Sita Vivah', '999')">
+
+                    Buy Now
+
+                </button>
+
+            </div>
+
+
+
+            <!-- RAM SHABRI MILAN -->
+
+            <div class="painting">
+
+                <img
+                    src="{{ url_for('static', filename='images/ram-shabri milan.jpeg') }}"
+                    alt="Ram Shabri Milan"
+                    onclick="openModal(this.src)"
+                >
+
+                <h3>
+                    Ram Shabri Milan
+                </h3>
+
+                <p class="price">
+                    ₹699
+                </p>
+
+                <button
+                    class="buy-btn"
+                    onclick="buyPainting('Ram Shabri Milan', '699')">
+
+                    Buy Now
+
+                </button>
+
+            </div>
+
+
+
+            <!-- ELEPHANT ARTWORK -->
+
+            <div class="painting">
+
+                <img
+                    src="{{ url_for('static', filename='images/elephant artwork.jpeg') }}"
+                    alt="Elephant Themed Circular Artwork"
+                    onclick="openModal(this.src)"
+                >
+
+                <h3>
+                    Elephant Themed Circular Artwork
+                </h3>
+
+                <p class="price">
+                    ₹599
+                </p>
+
+                <button
+                    class="buy-btn"
+                    onclick="buyPainting('Elephant Themed Circular Artwork', '599')">
+
+                    Buy Now
+
+                </button>
+
+            </div>
+
+
+
+            <!-- WOMEN ARTWORK -->
+
+            <div class="painting">
+
+                <img
+                    src="{{ url_for('static', filename='images/women artwork.jpeg') }}"
+                    alt="Women Artwork"
+                    onclick="openModal(this.src)"
+                >
+
+                <h3>
+                    Women Artwork
+                </h3>
+
+                <p class="price">
+                    ₹599
+                </p>
+
+                <button
+                    class="buy-btn"
+                    onclick="buyPainting('Women Artwork', '599')">
+
+                    Buy Now
+
+                </button>
+
+            </div>
+
+
+        </div>
+
+    </section>
+
+
+
+    <!-- =========================
+         IMAGE POPUP
+         ========================= -->
+
+    <div
+        id="imageModal"
+        class="image-modal"
+        onclick="closeModal()"
+    >
+
+        <span class="close-modal">
+            &times;
+        </span>
+
+        <img
+            id="modalImage"
+            src=""
+            alt="Large Artwork"
+            onclick="event.stopPropagation()"
+        >
+
+    </div>
+
+
+
+    <!-- =========================
+         JAVASCRIPT
+         ========================= -->
+
+    <script>
+
+        function openModal(imageSrc) {
+
+            document.getElementById("imageModal").style.display = "flex";
+
+            document.getElementById("modalImage").src = imageSrc;
+
+        }
+
+
+        function closeModal() {
+
+            document.getElementById("imageModal").style.display = "none";
+
+        }
+
+
+        function buyPainting(paintingName, price) {
+
+            window.location.href =
+                "/order?painting=" +
+                encodeURIComponent(paintingName) +
+                "&price=" +
+                encodeURIComponent(price);
+
+        }
+
+    </script>
+
+
+</body>
+
+</html>

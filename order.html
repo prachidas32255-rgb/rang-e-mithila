@@ -1,0 +1,418 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Place Your Order | Rang-e-Mithila</title>
+
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='css/style.css') }}">
+
+    <style>
+
+        .order-section {
+            max-width: 700px;
+            margin: 50px auto;
+            padding: 35px;
+            background: #fffaf2;
+            border-radius: 15px;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.15);
+        }
+
+        .order-section h1 {
+            text-align: center;
+            margin-bottom: 10px;
+        }
+
+        .order-intro {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .order-form {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        .order-form label {
+            font-weight: bold;
+        }
+
+        .order-form input,
+        .order-form select {
+            padding: 12px;
+            border: 1px solid #ccc;
+            border-radius: 6px;
+            font-size: 16px;
+        }
+
+        .price-display {
+            background: #f7e7c6;
+            padding: 12px;
+            border-radius: 6px;
+            font-size: 18px;
+            font-weight: bold;
+            color: #8f1d2c;
+        }
+
+        .order-button {
+            margin-top: 10px;
+            padding: 14px;
+            background: #8f1d2c;
+            color: white;
+            border: none;
+            border-radius: 6px;
+            font-size: 17px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        .order-button:hover {
+            background: #d99a2b;
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+    <!-- Navigation -->
+
+    <nav>
+
+        <div class="logo">
+            Rang-e-Mithila
+        </div>
+
+        <div class="nav-links">
+
+            <a href="/">Home</a>
+
+            <a href="/gallery">Gallery</a>
+
+            <a href="/about">About</a>
+
+            <a href="/contact">Contact</a>
+
+        </div>
+
+    </nav>
+
+
+    <!-- Order Form -->
+
+    <section class="order-section">
+
+        <h1>Place Your Order</h1>
+
+        <p class="order-intro">
+            Please enter your details and delivery address.
+        </p>
+
+
+        <form class="order-form"
+              action="/order"
+              method="POST"
+              onsubmit="prepareAddress()">
+
+
+            <!-- Full Name -->
+
+            <label for="name">
+                Full Name
+            </label>
+
+            <input
+                type="text"
+                id="name"
+                name="name"
+                placeholder="Enter your full name"
+                required
+            >
+
+
+            <!-- Phone -->
+
+            <label for="phone">
+                Phone Number
+            </label>
+
+            <input
+                type="tel"
+                id="phone"
+                name="phone"
+                placeholder="Enter your phone number"
+                required
+            >
+
+
+            <!-- Email -->
+
+            <label for="email">
+                Email
+            </label>
+
+            <input
+                type="email"
+                id="email"
+                name="email"
+                placeholder="Enter your email address"
+            >
+
+
+            <!-- Painting -->
+
+            <label for="painting">
+                Select Painting
+            </label>
+
+            <select
+                id="painting"
+                name="painting"
+                onchange="updatePrice()"
+                required
+            >
+
+                <option value="">
+                    Select a painting
+                </option>
+
+                <option value="Radha - Krishna Jhulan"
+                    {% if painting == "Radha - Krishna Jhulan" %}selected{% endif %}>
+                    Radha - Krishna Jhulan
+                </option>
+
+                <option value="Ram Sita Vivah"
+                    {% if painting == "Ram Sita Vivah" %}selected{% endif %}>
+                    Ram Sita Vivah
+                </option>
+
+                <option value="Ram Shabri Milan"
+                    {% if painting == "Ram Shabri Milan" %}selected{% endif %}>
+                    Ram Shabri Milan
+                </option>
+
+                <option value="Elephant Themed Circular Artwork"
+                    {% if painting == "Elephant Themed Circular Artwork" %}selected{% endif %}>
+                    Elephant Themed Circular Artwork
+                </option>
+
+                <option value="Women Artwork"
+                    {% if painting == "Women Artwork" %}selected{% endif %}>
+                    Women Artwork
+                </option>
+
+            </select>
+
+
+            <!-- Price -->
+
+            <label>
+                Price
+            </label>
+
+            <div class="price-display">
+                ₹<span id="priceDisplay">{{ price if price else "0" }}</span>
+            </div>
+
+            <input
+                type="hidden"
+                id="price"
+                name="price"
+                value="{{ price }}"
+            >
+
+
+            <!-- Building -->
+
+            <label for="building">
+                Building / House Name
+            </label>
+
+            <input
+                type="text"
+                id="building"
+                name="building"
+                placeholder="House / Building name"
+                required
+            >
+
+
+            <!-- Road -->
+
+            <label for="road">
+                Road / Street Number
+            </label>
+
+            <input
+                type="text"
+                id="road"
+                name="road"
+                placeholder="Road / Street number"
+                required
+            >
+
+
+            <!-- Area -->
+
+            <label for="area">
+                Area / Locality
+            </label>
+
+            <input
+                type="text"
+                id="area"
+                name="area"
+                placeholder="Area / Locality"
+                required
+            >
+
+
+            <!-- City -->
+
+            <label for="city">
+                City
+            </label>
+
+            <input
+                type="text"
+                id="city"
+                name="city"
+                placeholder="City"
+                required
+            >
+
+
+            <!-- State -->
+
+            <label for="state">
+                State
+            </label>
+
+            <input
+                type="text"
+                id="state"
+                name="state"
+                placeholder="State"
+                required
+            >
+
+
+            <!-- Hidden complete address -->
+
+            <input
+                type="hidden"
+                id="address"
+                name="address"
+            >
+
+
+            <!-- PIN Code -->
+
+            <label for="pincode">
+                PIN Code
+            </label>
+
+            <input
+                type="text"
+                id="pincode"
+                name="pincode"
+                placeholder="6-digit PIN code"
+                maxlength="6"
+                pattern="[0-9]{6}"
+                required
+            >
+
+
+            <!-- Place Order -->
+
+            <button
+                type="submit"
+                class="order-button"
+            >
+                Place Order
+            </button>
+
+        </form>
+
+    </section>
+
+
+    <!-- JavaScript -->
+
+    <script>
+
+        function updatePrice() {
+
+            const painting =
+                document.getElementById("painting").value;
+
+            const prices = {
+
+                "Radha - Krishna Jhulan": "999",
+
+                "Ram Sita Vivah": "999",
+
+                "Ram Shabri Milan": "699",
+
+                "Elephant Themed Circular Artwork": "599",
+
+                "Women Artwork": "599"
+
+            };
+
+            const price =
+                prices[painting] || "";
+
+            document.getElementById("price").value = price;
+
+            document.getElementById("priceDisplay").innerText =
+                price || "0";
+        }
+
+
+        function prepareAddress() {
+
+            const building =
+                document.getElementById("building").value;
+
+            const road =
+                document.getElementById("road").value;
+
+            const area =
+                document.getElementById("area").value;
+
+            const city =
+                document.getElementById("city").value;
+
+            const state =
+                document.getElementById("state").value;
+
+            const completeAddress =
+                building + ", " +
+                area + ", " +
+                city + ", " +
+                state;
+
+            document.getElementById("address").value =
+                completeAddress;
+        }
+
+
+        // Automatically show price when page opens
+
+        updatePrice();
+
+    </script>
+
+
+</body>
+
+</html>
