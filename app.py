@@ -2,7 +2,7 @@ from flask import Flask, render_template, request, redirect, url_for, session
 import sqlite3
 from functools import wraps
 
-app = Flask(__name__,static_folder="static"template_folder="templates"
+app = Flask(__name__,static_folder="static",template_folder="templates")
 
 DATABASE = "orders.db"
 
