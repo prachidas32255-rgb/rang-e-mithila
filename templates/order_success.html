@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>Order Confirmed | Rang-e-Mithila</title>
+
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='css/style.css') }}">
+
+    <style>
+
+        .success-section {
+            min-height: 75vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 40px 20px;
+        }
+
+        .success-card {
+            max-width: 600px;
+            width: 100%;
+            text-align: center;
+            background: #fffaf2;
+            padding: 45px 30px;
+            border-radius: 18px;
+            box-shadow: 0 5px 25px rgba(0, 0, 0, 0.15);
+        }
+
+        .success-icon {
+            font-size: 60px;
+            margin-bottom: 15px;
+        }
+
+        .success-card h1 {
+            margin-bottom: 15px;
+        }
+
+        .success-card p {
+            font-size: 18px;
+            line-height: 1.6;
+        }
+
+        .painting-name {
+            font-weight: bold;
+        }
+
+        .home-btn {
+            display: inline-block;
+            margin-top: 25px;
+            padding: 12px 25px;
+            background: #8f1d2c;
+            color: white;
+            text-decoration: none;
+            border-radius: 6px;
+            font-weight: bold;
+        }
+
+        .home-btn:hover {
+            background: #d99a2b;
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+
+    <nav>
+
+        <div class="logo">
+            Rang-e-Mithila
+        </div>
+
+        <div class="nav-links">
+
+            <a href="/">
+                Home
+            </a>
+
+            <a href="/gallery">
+                Gallery
+            </a>
+
+        </div>
+
+    </nav>
+
+
+    <section class="success-section">
+
+        <div class="success-card">
+
+            <div class="success-icon">
+                ✓
+            </div>
+
+            <h1>
+                Thank You, {{ name }}!
+            </h1>
+
+            <p>
+                Your order request has been received successfully.
+            </p>
+
+            <p>
+                You selected:
+                <span class="painting-name">
+                    {{ painting }}
+                </span>
+            </p>
+
+            <p>
+                We will contact you soon regarding your order.
+            </p>
+
+            <a href="/gallery" class="home-btn">
+                Back to Gallery
+            </a>
+
+        </div>
+
+    </section>
+
+
+</body>
+
+</html>

@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Admin Orders | Rang-e-Mithila</title>
+
+    <style>
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            font-family: Georgia, serif;
+            background: #fff7f3;
+            color: #4a2525;
+        }
+
+        .navbar {
+            background: #a7192e;
+            color: white;
+            padding: 20px 40px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 4px solid #d99a2b;
+        }
+
+        .logo {
+            font-size: 28px;
+            font-weight: bold;
+        }
+
+        .navbar a {
+            color: white;
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        .container {
+            width: 95%;
+            margin: 40px auto;
+        }
+
+        h1 {
+            text-align: center;
+            color: #8f1d2c;
+            margin-bottom: 10px;
+        }
+
+        .subtitle {
+            text-align: center;
+            color: #666;
+            margin-bottom: 30px;
+        }
+
+        .table-container {
+            background: white;
+            padding: 20px;
+            border-radius: 12px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.08);
+            overflow-x: auto;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            min-width: 1100px;
+        }
+
+        th {
+            background: #8f1d2c;
+            color: white;
+            padding: 14px;
+            text-align: left;
+        }
+
+        td {
+            padding: 12px;
+            border-bottom: 1px solid #eee;
+        }
+
+        tr:hover {
+            background: #fff4e8;
+        }
+
+        .price {
+            font-weight: bold;
+            color: #8f1d2c;
+        }
+
+        .empty {
+            text-align: center;
+            padding: 40px;
+            font-size: 18px;
+            color: #777;
+        }
+
+        .back-btn {
+            display: inline-block;
+            margin-top: 25px;
+            padding: 12px 25px;
+            background: #8f1d2c;
+            color: white;
+            text-decoration: none;
+            border-radius: 6px;
+            font-weight: bold;
+        }
+
+        .back-btn:hover {
+            background: #d99a2b;
+        }
+
+    </style>
+
+</head>
+
+<body>
+
+    <nav class="navbar">
+
+        <div class="logo">
+            Rang-e-Mithila
+        </div>
+
+        <a href="/">
+            Back to Website
+        </a>
+
+    </nav>
+
+
+    <div class="container">
+
+        <h1>
+            Customer Orders
+        </h1>
+
+        <p class="subtitle">
+            All painting orders received through Rang-e-Mithila
+        </p>
+
+
+        {% if orders %}
+
+        <div class="table-container">
+
+            <table>
+
+                <thead>
+
+                    <tr>
+                        <th>ID</th>
+                        <th>Name</th>
+                        <th>Phone</th>
+                        <th>Email</th>
+                        <th>Address</th>
+                        <th>Road</th>
+                        <th>Building</th>
+                        <th>PIN Code</th>
+                        <th>Painting</th>
+                        <th>Price</th>
+                    </tr>
+
+                </thead>
+
+
+                <tbody>
+
+                    {% for order in orders %}
+
+                    <tr>
+
+                        <td>
+                            {{ order[0] }}
+                        </td>
+
+                        <td>
+                            {{ order[1] }}
+                        </td>
+
+                        <td>
+                            {{ order[2] }}
+                        </td>
+
+                        <td>
+                            {{ order[3] }}
+                        </td>
+
+                        <td>
+                            {{ order[4] }}
+                        </td>
+
+                        <td>
+                            {{ order[5] }}
+                        </td>
+
+                        <td>
+                            {{ order[6] }}
+                        </td>
+
+                        <td>
+                            {{ order[7] }}
+                        </td>
+
+                        <td>
+                            {{ order[8] }}
+                        </td>
+
+                        <td class="price">
+                            ₹{{ order[9] }}
+                        </td>
+
+                    </tr>
+
+                    {% endfor %}
+
+                </tbody>
+
+            </table>
+
+        </div>
+
+        {% else %}
+
+        <div class="table-container">
+
+            <div class="empty">
+                No orders have been received yet.
+            </div>
+
+        </div>
+
+        {% endif %}
+
+
+        <div style="text-align:center;">
+
+            <a href="/" class="back-btn">
+                Back to Website
+            </a>
+
+        </div>
+
+    </div>
+
+</body>
+
+</html>

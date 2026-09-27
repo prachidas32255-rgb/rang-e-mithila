@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Rang-e-Mithila | Mithila Art</title>
+
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='css/style.css') }}">
+
+    <style>
+        /* ABOUT THE ARTIST - HOME PAGE */
+
+        .artist-section {
+            display: flex;
+            align-items: center;
+            gap: 60px;
+            max-width: 1200px;
+            margin: 70px auto;
+            padding: 40px 50px;
+            background: #fffaf5;
+            border-radius: 20px;
+            box-sizing: border-box;
+        }
+
+        .artist-image {
+            flex: 0 0 42%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .artist-image img {
+            width: 100%;
+            max-width: 420px;
+            height: 500px;
+            object-fit: cover;
+            object-position: center top;
+            border-radius: 15px;
+            display: block;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+        }
+
+        .artist-content {
+            flex: 1;
+            text-align: left;
+        }
+
+        .artist-content h2 {
+            font-size: 34px;
+            color: #8f1d32;
+            margin-bottom: 25px;
+        }
+
+        .artist-content h3 {
+            font-size: 25px;
+            color: #8f1d32;
+            margin-bottom: 20px;
+        }
+
+        .artist-content p {
+            font-size: 17px;
+            line-height: 1.9;
+            color: #4a3a3a;
+            margin-bottom: 18px;
+        }
+
+        .maithili-story {
+            margin-top: 10px;
+        }
+
+        /* MOBILE */
+        @media (max-width: 768px) {
+
+            .artist-section {
+                flex-direction: column;
+                gap: 30px;
+                padding: 30px 20px;
+                margin: 40px 15px;
+            }
+
+            .artist-image {
+                width: 100%;
+            }
+
+            .artist-image img {
+                width: 100%;
+                max-width: 350px;
+                height: 420px;
+            }
+
+            .artist-content {
+                text-align: left;
+            }
+
+            .artist-content h2 {
+                font-size: 28px;
+            }
+
+            .artist-content h3 {
+                font-size: 22px;
+            }
+
+            .artist-content p {
+                font-size: 16px;
+                line-height: 1.8;
+            }
+        }
+    </style>
+
+</head>
+
+<body>
+
+    <!-- NAVBAR -->
+    <nav class="navbar">
+
+        <div class="logo">
+            Rang-e-Mithila
+        </div>
+
+        <div class="nav-links">
+            <a href="/">Home</a>
+            <a href="/gallery">Gallery</a>
+            <a href="/about">About the Artist</a>
+            <a href="/contact">Contact</a>
+        </div>
+
+    </nav>
+
+
+    <!-- HERO SECTION -->
+    <section class="hero">
+
+        <div class="hero-content">
+
+            <h1>
+                Welcome to Rang-e-Mithila
+            </h1>
+
+            <p>
+                Discover the beauty of traditional Mithila art,
+                where culture, stories and colours come together
+                to create beautiful handmade paintings.
+            </p>
+
+            <a href="/gallery" class="hero-button">
+                Explore Our Gallery
+            </a>
+
+        </div>
+
+    </section>
+
+
+    <!-- INTRO SECTION -->
+    <section class="intro">
+
+        <h2>
+            The Colours of Mithila
+        </h2>
+
+        <p>
+            Rang-e-Mithila is a small effort to preserve the
+            beauty, stories and traditions of Mithila through
+            handmade paintings.
+        </p>
+
+    </section>
+
+
+    <!-- ABOUT THE ARTIST -->
+    <section class="artist-section">
+
+        <!-- LEFT SIDE: PHOTO -->
+        <div class="artist-image">
+
+            <img src="{{ url_for('static', filename='images/artist.jpg') }}"
+                 alt="Prachi - Rang-e-Mithila Artist">
+
+        </div>
+
+
+        <!-- RIGHT SIDE: MAITHILI STORY -->
+        <div class="artist-content">
+
+            <h2>About the Artist</h2>
+
+            <h3>
+                हमर कथा — रंग सँ जुड़ल एकटा नाता
+            </h3>
+
+            <div class="maithili-story">
+
+                <p>
+                    हम प्राची छी, मिथिलाक धरती मधुबनी सँ।
+                </p>
+
+                <p>
+                    जे माटि में हम पोस-पाल क पैघ भेलहुँ, ओतयक ई कला केवल कागज पर बनल कोनो चित्र नहि अछि—ई हमर जीवन, हमर परंपरा आ हमर स्मृतिक एकटा हिस्सा अछि।
+                </p>
+
+                <p>
+                    बचपन सँ अपन आसपास ई रंग सभ देखैत आएल छी—घरक देवाल पर बनल आकृति, आँगन में सजल अइरपन, पर्व-त्योहारक अवसर पर बनाओल गेल सुंदर अलंकरण आ ओहि चित्र सभ में छुपल अनगिनत कथा।
+                </p>
+
+                <p>
+                    शायद तखने सँ एहि रंग सभ सँ हमर नाता धीरे-धीरे एतेक गहिर होइत गेल।
+                </p>
+
+                <p>
+                    हमरा लेल मिथिला पेंटिंग केवल रंग आ रेखाक मेल नहि, बल्कि अपन माटि सँ जुड़ल एकटा पहचान अछि। प्रत्येक रेखा में विधि-विधान अछि, प्रत्येक रंग में भावना अछि आ प्रत्येक चित्रक पाछाँ एकटा कथा अछि।
+                </p>
+
+                <p>
+                    जे देखलहुँ, जे महसूस केलहुँ आ जाहि संस्कृति के बीच पैघ भेलहुँ, ओकरे अपन कला के माध्यम सँ सहेजबाक प्रयास करैत छी।
+                </p>
+
+                <p>
+                    Rang-e-Mithila ओहि प्रयासक एकटा छोट सन पहल अछि, जाहि सँ मधुबनीक पर्व-त्योहार, लोककथा आ परंपराक ई रंग कागज सँ निकलि दूर-दूर धरि पहुँचि सकय।
+                </p>
+
+                <p>
+                    हमर प्रत्येक पेंटिंग में केवल एकटा चित्र नहि, बल्कि मिथिलाक प्रेम नुकायल अछि।
+                </p>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- FOOTER -->
+    <footer>
+
+        <p>
+            © 2026 Rang-e-Mithila | Traditional Mithila Art
+        </p>
+
+    </footer>
+
+</body>
+
+</html>
