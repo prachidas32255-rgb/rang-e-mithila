@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>About the Artist | Rang-e-Mithila</title>
+
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+
+<body>
+
+    <!-- NAVBAR -->
+    <nav class="navbar">
+
+        <div class="logo">
+            Rang-e-Mithila
+        </div>
+
+        <div class="nav-links">
+            <a href="/">Home</a>
+            <a href="/gallery">Gallery</a>
+            <a href="/about">About the Artist</a>
+            <a href="/contact">Contact</a>
+        </div>
+
+    </nav>
+
+
+    <!-- ABOUT ARTIST -->
+    <section class="about-section">
+
+        <div class="about-image">
+
+            <img src="{{ url_for('static', filename='images/artist.jpg') }}"
+                 alt="Artist of Rang-e-Mithila">
+
+        </div>
+
+
+        <div class="about-content">
+
+            <h1>About the Artist</h1>
+
+            <h2>Rang-e-Mithila</h2>
+
+            <p>
+                Rang-e-Mithila is a small effort to bring the beautiful
+                tradition of Mithila art to the world.
+            </p>
+
+            <p>
+                Mithila painting is a traditional art form from the Mithila
+                region of Bihar. It is known for its vibrant colours,
+                intricate patterns and stories inspired by nature,
+                mythology and everyday life.
+            </p>
+
+            <p>
+                Through Rang-e-Mithila, I want to preserve this beautiful
+                cultural heritage and share the stories, colours and
+                emotions of Mithila through handmade paintings.
+            </p>
+
+            <p>
+                Every painting is created with love, patience and a
+                connection to the rich culture of Mithila.
+            </p>
+
+        </div>
+
+    </section>
+
+
+    <!-- FOOTER -->
+    <footer>
+
+        <p>
+            © 2026 Rang-e-Mithila | Traditional Mithila Art
+        </p>
+
+    </footer>
+
+</body>
+
+</html>
